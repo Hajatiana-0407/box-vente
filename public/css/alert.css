@@ -1,0 +1,158 @@
+.volet {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #09080896;
+    z-index: 1999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.close {
+    color: black;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.close i {
+    font-weight: bolder;
+}
+
+._alert {
+    position: fixed;
+    z-index: 2000;
+    min-height: 215px;
+    height: auto !important;
+    width: 320px;
+    overflow-wrap : break-word ;
+    background: white;
+    border-radius: 0.375rem;
+    left: calc( 50% - 160px );
+    top: 30%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+}
+
+._message strong{
+    overflow-wrap: anywhere;
+}
+
+.dark ._alert {
+    background: #263238;
+}
+
+.dark .close {
+    color: white;
+}
+
+.dark ._message {
+    color: white
+}
+
+.dark ._icon-warning svg {
+    background: white;
+    border-radius: 81%;
+}
+
+._icon-warning {
+    font-size: 60px;
+    color: #dc3545;
+} 
+._icon-question {
+    font-size: 60px;
+    color: #0dcaf0;
+} 
+
+._icon-success {
+    font-size: 60px;
+    color: green;
+}
+
+._btn-delete {
+    display: flex;
+    justify-content: space-around;
+}
+
+._btn-delete button {
+    width: 48%;
+}
+
+._message {
+    color: black;
+}
+
+._btn {
+    width: 100%;
+    cursor: default !important;
+}
+
+.button-warning {
+    width: 150px;
+    background: #13b2d2;
+    border-radius: 0.375rem;
+    border: none;
+    padding: 5px 0;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-warning:hover {
+    background: #0dcaf0; 
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+.button-war {
+    width: 150px;
+    background: #dc3546d3;
+    border-radius: 0.375rem;
+    border: none;
+    padding: 5px 0;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-war:hover {
+    background: #dc3545;
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+.button-succes {
+    width: 150px;
+    background: green;
+    border-radius: 0.375rem;
+    border: none;
+    padding: 5px 0;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-succes:hover {
+    background: #0b0;
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+#cancelDelete {
+    background: #8484842e;
+    border-radius: 0.375rem;
+    border: none;
+    padding: 5px 0;
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+#cancelDelete:hover {
+    background: #84848475;
+    transition: all 0.3s ease-in-out;
+    color: black;
+}

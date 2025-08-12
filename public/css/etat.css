@@ -1,0 +1,161 @@
+/* formulaire de recherche  */
+#searchform {
+    display: flex ;
+    flex-wrap: wrap;
+    padding-inline: 0 ;
+}
+
+.group_form {
+    width: calc( 1200px / 5  );
+    padding-inline: 5px ;
+}
+.btn_rechreche {
+    width: 161px ;
+    padding-top: 32px  ;
+}
+
+#searchform input , #searchform select , .btn_rechreche button {
+    height: 43px ;
+}
+
+@media all and (max-width : 1430px) {
+    #searchform {
+        gap: 5px ;
+    }
+
+    .group_form {
+        width: calc( 98% / 4 );
+    }
+
+    .btn_rechreche {
+        width: 100% ;
+        display: flex ;
+        justify-content: right ;
+        padding-top: 5px ;
+        padding-right: 13px ;
+    }
+}
+@media all and (max-width : 1207px) {
+    #searchform {
+        gap: 5px ;
+    }
+
+    .group_form {
+        width: calc( 98% / 3 );
+    }
+
+    .btn_rechreche {
+        padding-top: 32px  ;
+        justify-content: left ;
+    }
+    .group_form:nth-child(4){
+        width: calc( (98% / 3 ) * 2 + 5px );
+    }
+
+}
+@media all and (max-width : 1086px) {
+    .group_form {
+        width: calc( 98% / 2 );
+    }
+
+    .group_form:not(.group_form:nth-child(1)):not(.group_form:nth-child(2)):not(.group_form:nth-child(5))  {
+        width: calc( 98% / 3 + 50px );
+    }
+
+    .group_form.btn_rechreche {
+        width: calc( 98% / 3 - 100px );
+    }
+
+
+}
+@media all and (max-width : 1019px) {
+    .group_form {
+        width: calc( 98% / 2 ) !important;
+    }
+    .group_form.btn_rechreche {
+        width: 99%  !important;
+        justify-content: right ;
+        padding-top: 0px ;
+        padding-right: 5px ;
+    }
+}
+
+@media all and (max-width : 768px ) {
+    #searchform #type {
+        height: 35px !important;
+    }
+}
+@media all and (max-width : 566px) {
+
+    .group_form  {
+        width: calc( 99% ) !important;
+    }
+
+
+}
+
+
+
+/* formulaire de recherche  */
+
+
+
+
+.argent {
+    display: flex;
+    justify-content: right;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.argent .thearg {
+    min-width: 250px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.thearg p {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.thearg label {
+    margin: 0;
+}
+
+#entrent {
+    border: 1px solid green;
+}
+
+#depense {
+    border: 1px solid red;
+}
+
+#solde {
+    border: 1px solid rgb(107, 107, 253);
+}
+
+.argent .thearg,
+.argent label {
+    color: #5c5560 !important;
+}
+
+
+
+
+
+
+@media all and (max-width : 386px) {
+    .thearg {
+        width: 100%;
+    }
+}
+
+@media all and (max-width : 528px) {
+    .argent {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

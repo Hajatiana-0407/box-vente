@@ -1,0 +1,33 @@
+
+:root {
+    --background: #ecf0f1;
+    --color: white;
+    --mycolor: #5c5560;
+}
+
+
+
+.choix_client:hover {   
+    cursor: pointer;
+}
+.champ_vide {
+    border: 1px solid red; 
+}
+
+.modal_body {
+    max-height: 550px !important ;
+    overflow: scroll;
+}
+
+#tva_include {
+    display: flex ;
+    align-items: center !important;
+    gap: 10px ;
+}
+#sendvalidation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    /* color: white; */
+}

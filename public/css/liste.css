@@ -1,0 +1,101 @@
+/* numero de serie  */
+#all_numero_container input {
+    height: 36px !important ;
+}
+.numero_container {
+    display: flex ;
+    gap: 10px ;
+}
+.input-flex {
+    display:  flex ;
+    gap: 10px ;
+}
+#btn_plus  button {
+    height: 36px ;
+}
+/* numero de serie  */
+/* formulaire de recherche  */
+#searchform {
+    display: flex;
+    flex-wrap: wrap;
+    padding-inline: 0;
+}
+
+.group_form {
+    width: calc(1466px / 5);
+    padding-inline: 5px;
+}
+
+.btn_rechreche {
+    width: max-content;
+    padding-top: 32px;
+}
+
+#searchform input,
+#searchform select,
+.btn_rechreche button {
+    height: 43px;
+}
+
+
+@media all and (max-width : 1284px) {
+    #searchform {
+        gap: 5px;
+    }
+
+    .group_form {
+        width: calc(98% / 3);
+    }
+
+    .btn_rechreche {
+        width: 100%;
+        display: flex;
+        justify-content: right;
+        padding-top: 5px;
+        padding-right: 13px;
+    }
+}
+
+@media all and (max-width : 1100px) {
+    #searchform {
+        gap: 5px;
+    }
+
+    .group_form {
+        width: calc(98% / 2);
+    }
+
+    .group_form.btn_rechreche {
+        padding-top: 32px;
+        justify-content: left;
+        width: max-content;
+    }
+
+}
+
+@media all and (max-width : 768px) {
+    .group_form.btn_rechreche {
+        padding-top: 29px;
+        justify-content: left;
+        width: max-content;
+    }
+}
+
+@media all and (max-width : 566px) {
+
+    .group_form {
+        width: calc(99%) !important;
+    }
+
+    .group_form.btn_rechreche {
+        padding-top: 0px;
+        justify-content: right;
+        width: 100%;
+        padding-right: 5px;
+    }
+}
+
+/* formulaire de recherche  */
+
+
+/* form */

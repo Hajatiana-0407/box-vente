@@ -1,0 +1,31 @@
+.pagination {
+    display: flex;
+    justify-content: right ;
+    flex-direction: row;
+    align-items: end;
+    margin-right: 50px ;
+}
+.js_pagination {
+    cursor: pointer ;
+}
+
+.discrete .pagination .page-item {
+    background-color: #275653 ;
+    color: white ;
+}
+.sapin .pagination .page-item {
+    background-color: #1d3c45 ;
+    color: white ;
+}
+.pagination .page-item.active {
+    background-color: #1563b1  ;
+    border-color : white !important ;
+}
+.pagination .page-item.active form button{
+    background-color: transparent  ;
+    color: white !important;
+}
+
+
+
+

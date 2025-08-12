@@ -1,0 +1,52 @@
+.form {
+    display: flex;
+    gap: 15px;
+}
+
+.form form {
+    width: 550px;
+}
+
+
+._image {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+._image img {
+    object-fit: contain;
+    width: 80%;
+    height: 100%;
+    position: absolute;
+}
+
+@media all and (max-width:656px) {
+    .form {
+        flex-wrap: wrap;
+    }
+    .form form {
+        width: 100% ;
+    }
+
+    .logo {
+        margin-top: 0 !important;
+    }
+}
+@media all and (max-width:360px) {
+    .logo {
+        width: 100%;
+    }
+    .logo ._image {
+        width: 100% ; 
+    }; 
+    
+}
+
+/* table {
+    height: 200px ;
+    overflow-y: auto ;
+} */

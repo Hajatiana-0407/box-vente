@@ -1,0 +1,35 @@
+* {
+    color: black;
+}
+
+img {
+    width: 200px
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.eye{
+    cursor: pointer;
+}
+
+span {
+    position: absolute;
+    right: 30px;
+    margin-top: 7px;
+}
+
+#password {
+    width: 100%;
+}
+
+.pass {
+    display: flex;
+}
+
+.corps {
+    border-radius: 20px;
+
+}

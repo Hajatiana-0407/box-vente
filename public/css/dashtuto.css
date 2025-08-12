@@ -1,0 +1,157 @@
+#form_video {
+    width: 500px;
+}
+
+._image {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+._image video {
+    object-fit: contain;
+    width: 80%;
+    height: 100%;
+    position: absolute;
+}
+
+#formulaire_video {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.video_container {
+    width: 100% ;
+    aspect-ratio: 3/2 !important;
+    display: flex ;
+    align-items: center;
+    border-bottom: 1px solid #00000038;
+
+}
+.video_container .iframe {
+    height: inherit !important;
+}
+
+#video {
+    width: 100%;
+}
+
+
+
+/* container video texte  */
+
+.video-title {
+    padding: 10px;
+    padding-left: 0px;
+    font-size: 1em;
+    color: #333;
+    background: #eee;
+
+    height: 50px ;
+    overflow: hidden; 
+    text-overflow: ellipsis ; 
+    white-space: nowrap; 
+    font-weight: 600;
+}
+
+
+/* container video texte  */
+
+
+/* tutoriels */
+.video-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.video-item {
+    background: #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: calc( (100% - ( 20px * 3) ) / 4);
+    position: relative;
+}
+.video-item iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 0.5 ;
+    /* border-bottom: 1px solid #ddd; */
+}
+
+.video-controls {
+    padding: 10px;
+    display: flex;
+    justify-content: left ;
+    gap: 10px;
+    
+}
+.btn-custom {
+    font-size: 1.2em;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.video-info {
+    padding: 10px;
+    background: #eee;
+    text-align: left ;
+    border-bottom: 1px solid #0000000f;
+}
+
+.video-description {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.video-language {
+    font-size: 0.9em;
+    color: #999;
+    margin-top: 5px;
+}
+/* tutoriel  */
+
+.titre {
+    display: flex;
+    padding-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recherche {
+    width: 400px;
+}
+@media all and (max-width : 578px) {
+    .titre {
+        flex-direction: column;
+        align-items: start;
+        gap: 0;
+    }
+    .recherche {
+        width: 100%;
+    }
+}
+@media all and (max-width : 1137px) {
+    .video-item {
+        width: calc( (100% - ( 20px *2 ) ) / 3);
+    }
+}
+@media all and (max-width : 529px) {
+    .video-item {
+        width: calc( (100% - ( 20px  ) ) / 2 );
+    }
+}
+@media all and (max-width : 385px) {
+    .video-item {
+        width: 100%;
+    }
+}
+

@@ -1,0 +1,21 @@
+#parent_val , #parent_val_modif , #child_val , #child_val_modif{
+    display: block ;
+    width:250px ;
+    text-align: right ;
+    position: absolute ;
+    top: 0px ;
+    right: 50px;
+    font-size: 20px ;
+    overflow: hidden;
+}
+#parent_val_modif ,  #child_val_modif {
+    width: 80px;
+    font-size: 18px;
+}
+#formule_container_modif .col-5, #formule_container  .col-5 {
+    position: relative ;
+}
+
+#formule_container_modif , #formule_container {
+    display:  none ;
+}

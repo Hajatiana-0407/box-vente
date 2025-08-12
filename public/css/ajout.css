@@ -1,0 +1,115 @@
+
+/* Nuouveau css */
+#sous_unite_container {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.212);
+    background-color: #fff;
+    padding: 10px;
+}
+
+#label_reference {
+    margin-right: 503px;
+}
+
+._image {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image {
+    border: medium !important;
+    width: 350px !important;
+    height: 350px !important;
+    object-fit: cover !important;
+
+}
+
+#editModal {
+    position : absolute !important;
+    height: max-content ;
+}
+
+/* .image_container {
+    width: 100% ;
+    height: 500px ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center;
+}
+
+.image_container ._image {
+    border: 1px solid rgba(0, 0, 0, 0.466) ;
+    width: 100% ;
+    height: calc( inherit - 200px ) ;
+    display:  flex ;
+    justify-content: center ;
+    align-items: center ;
+}
+.image_container ._image img  {
+    width: 350px ;
+    max-height: inherit;
+    border: 1px solid red ;
+} */
+/* Nuouveau css */
+
+
+
+/* .form {
+    display: flex;
+    gap: 15px;
+}
+
+.form form {
+    width: 550px;
+} */
+
+/* 
+._image {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+._image img {
+    object-fit: contain;
+    width: 80%;
+    height: 100%;
+    position: absolute;
+}
+
+@media all and (max-width:656px) {
+    .form {
+        flex-wrap: wrap;
+    }
+
+    .form form {
+        width: 100%;
+    }
+
+    .logo {
+        margin-top: 0 !important;
+    }
+}
+
+@media all and (max-width:360px) {
+    .logo {
+        width: 100%;
+    }
+
+    .logo ._image {
+        width: 100%;
+    }
+
+    ;
+
+} */
+
+/* table {
+    height: 200px ;
+    overflow-y: auto ;
+} */
