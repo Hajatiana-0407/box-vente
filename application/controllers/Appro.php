@@ -158,35 +158,13 @@ class Appro extends CI_Controller
         $produit = $this->appro->getProduitByRef($ref);
 
         if (count($produit)) {
-            $produit = $produit[0] ; 
-            if ( $produit->type == 'telephone' ){
-                $series = $this->appro->getAllNumero($produit->idProduit , $id_pv );
-                echo json_encode([
-                    'success' => true,
-                    'produit' => $produit,
-                    'type' => 'reference', 
-                    'series' => $series  
-                ]);
-            }else {
-                echo json_encode([
-                    'success' => true,
-                    'produit' => $produit,
-                    'type' => 'reference'
-                ]);
-            }
-            
+            $produit = $produit[0];
+            echo json_encode([
+                'success' => true,
+                'produit' => $produit,
+            ]);
         } else {
-            $data = $this->appro->getProduitByNumero($ref  , $id_pv );
-
-            if (count($data)) {
-                echo json_encode([
-                    'success' => true,
-                    'produit' => $data[0],
-                    'type' => 'numero'
-                ]);
-            } else {
-                echo json_encode(['success' => false, 'data' => '']);
-            }
+            echo json_encode(['success' => false, 'data' => '']);
         }
     }
 
@@ -210,7 +188,7 @@ class Appro extends CI_Controller
         if (isset($_POST['prix']) && $_POST['prix'] != '') {
             $prix = trim(strip_tags($_POST['prix']));
         }
-        $quantite = 1 ;
+        $quantite = 1;
         if (isset($_POST['quantite']) && $_POST['quantite'] != '') {
             $quantite = trim(strip_tags($_POST['quantite']));
         }
