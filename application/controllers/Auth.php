@@ -125,10 +125,6 @@ class Auth extends CI_Controller
             $email = strip_tags($this->input->post('mail'));
             $pass = strip_tags($this->input->post('pass'));
 
-            // $dataAdmin_model = array(
-            //     "email" => $email,
-            //     "pass" => $pass
-            // );
 
             $activ = 'admin';
             $connect = $this->Admin_model->connexion($email);
@@ -142,168 +138,26 @@ class Auth extends CI_Controller
                 if (isset($email) && $resultat_test_mdp === true) {
                     $this->session->set_userdata('show_stock_alert', true);
                     if ($activ == 'admin') {
-                        $abonne = $this->Admin_model->getAbonnement($connect[0]->teladmin);
+                        $_SESSION['user_type'] = 'admin';
+                        $_SESSION['email'] = $email;
+                        $_SESSION['idadmin'] = $connect[0]->idAdmin;
+                        $_SESSION['let_test'] = true;
+                        $_SESSION['time_rest'] = '';
+                        $_SESSION['abonne'] = true;
+                        $_SESSION['mode'] = $connect[0]->mode;
 
-                        if (count($abonne) > 0) {
-                            $abonne = $abonne[0];
-
-                            $date_abonne = new DateTime($abonne->date_debut);
-
-                            $durer = $abonne->dure;
-
-                            $interval = new DateInterval('P' . $durer . 'M');
-
-                            $date_abonne->add($interval);
-                            if ($date_abonne->format('Y-m-d H:i:s') >= date('Y-m-d H:i:s')) {
-                                // Calculer la différence entre les deux dates
-                                $date_fin =  new DateTime($date_abonne->format('Y-m-d H:i:s'));
-                                $date_now =  new  DateTime(date('Y-m-d H:i:s'));
-
-                                $interval = $date_fin->diff($date_now);
-                                $diffInDays = $interval->days;
-
-
-
-                                $_SESSION['user_type'] = 'admin';
-                                $_SESSION['email'] = $email;
-                                $_SESSION['idadmin'] = $connect[0]->idAdmin;
-                                $_SESSION['let_test'] = true;
-                                $_SESSION['time_rest'] = $diffInDays;
-                                $_SESSION['abonne'] = true;
-                                $_SESSION['mode'] = $connect[0]->mode;
-
-                                redirect('vente');
-                            } else {
-
-                                $_SESSION['user_type'] = 'admin';
-                                $_SESSION['email'] = $email;
-                                $_SESSION['idadmin'] = $connect[0]->idAdmin;
-                                $_SESSION['let_test'] = false;
-                                $_SESSION['abonne'] = false;
-                                $_SESSION['mode'] = $connect[0]->mode;
-
-                                redirect('vente');
-                            }
-                        } else {
-                            $date = new DateTime($connect[0]->dateinscription);
-
-                            date_add($date, date_interval_create_from_date_string('14 days'));
-
-                            if ($date->format('Y-m-d H:i:s') >= date('Y-m-d H:i:s')) {
-
-
-                                // Calculer la différence entre les deux dates
-                                $date_fin =  new DateTime($date->format('Y-m-d H:i:s'));
-                                $date_now =  new  DateTime(date('Y-m-d H:i:s'));
-
-                                $interval = $date_fin->diff($date_now);
-                                $diffInDays = $interval->days;
-
-
-
-                                $_SESSION['user_type'] = 'admin';
-                                $_SESSION['email'] = $email;
-                                $_SESSION['idadmin'] = $connect[0]->idAdmin;
-                                $_SESSION['let_test'] = true;
-                                $_SESSION['time_rest'] = $diffInDays;
-                                $_SESSION['mode'] = $connect[0]->mode;
-
-                                redirect('vente');
-                            } else {
-                                $_SESSION['user_type'] = 'admin';
-                                $_SESSION['email'] = $email;
-                                $_SESSION['idadmin'] = $connect[0]->idAdmin;
-                                $_SESSION['let_test'] = false;
-                                $_SESSION['mode'] = $connect[0]->mode;
-
-                                redirect('vente');
-                            }
-                        }
                     } else {
-
-                        $admin = $this->Admin_model->getuseractive($connect[0]->idadmin);
-
-
-                        $abonne = $this->Admin_model->getAbonnement($admin[0]->teladmin);
-
-                        if (count($abonne) > 0) {
-                            $abonne = $abonne[0];
-
-                            $date_abonne = new DateTime($abonne->date_debut);
-
-                            $durer = $abonne->dure;
-
-                            $interval = new DateInterval('P' . $durer . 'M');
-
-                            $date_abonne->add($interval);
-                            if ($date_abonne->format('Y-m-d H:i:s') >= date('Y-m-d H:i:s')) {
-                                // Calculer la différence entre les deux dates
-                                $date_fin =  new DateTime($date_abonne->format('Y-m-d H:i:s'));
-                                $date_now =  new  DateTime(date('Y-m-d H:i:s'));
-
-                                $interval = $date_fin->diff($date_now);
-                                $diffInDays = $interval->days;
-
-                                $_SESSION['user_type'] = 'user';
-                                $_SESSION['email'] = $email;
-                                $_SESSION['pv'] = $connect[0]->idPointVente;
-                                $_SESSION['id_user'] = $connect[0]->idUser;
-                                $_SESSION['idadmin'] = $connect[0]->idadmin;
-                                $_SESSION['let_test'] = true;
-                                $_SESSION['abonne'] = true;
-                                $_SESSION['time_rest'] = $diffInDays;
-                                $_SESSION['mode'] = $connect[0]->mode;
-
-                                redirect('vente');
-                            } else {
-                                $_SESSION['user_type'] = 'user';
-                                $_SESSION['email'] = $email;
-                                $_SESSION['pv'] = $connect[0]->idPointVente;
-                                $_SESSION['id_user'] = $connect[0]->idUser;
-                                $_SESSION['idadmin'] = $connect[0]->idadmin;
-                                $_SESSION['let_test'] = false;
-                                $_SESSION['abonne'] = false;
-                                $_SESSION['mode'] = $connect[0]->mode;
-                                redirect('vente');
-                            }
-                        } else {
-                            $date = new DateTime($admin[0]->dateinscription);
-
-                            date_add($date, date_interval_create_from_date_string('14 days'));
-
-                            if ($date->format('Y-m-d H:i:s') >= date('Y-m-d H:i:s')) {
-
-                                // Calculer la différence entre les deux dates
-                                $date_fin =  new DateTime($date->format('Y-m-d H:i:s'));
-                                $date_now =  new  DateTime(date('Y-m-d H:i:s'));
-
-                                $interval = $date_fin->diff($date_now);
-                                $diffInDays = $interval->days;
-
-
-
-                                $_SESSION['user_type'] = 'user';
-                                $_SESSION['email'] = $email;
-                                $_SESSION['pv'] = $connect[0]->idPointVente;
-                                $_SESSION['id_user'] = $connect[0]->idUser;
-                                $_SESSION['idadmin'] = $connect[0]->idadmin;
-                                $_SESSION['let_test'] = true;
-                                $_SESSION['time_rest'] = $diffInDays;
-                                $_SESSION['mode'] = $connect[0]->mode;
-
-                                redirect('vente');
-                            } else {
-                                $_SESSION['user_type'] = 'user';
-                                $_SESSION['email'] = $email;
-                                $_SESSION['pv'] = $connect[0]->idPointVente;
-                                $_SESSION['id_user'] = $connect[0]->idUser;
-                                $_SESSION['idadmin'] = $connect[0]->idadmin;
-                                $_SESSION['let_test'] = false;
-                                $_SESSION['mode'] = $connect[0]->mode;
-                                redirect('vente');
-                            }
-                        }
+                        $_SESSION['user_type'] = 'user';
+                        $_SESSION['email'] = $email;
+                        $_SESSION['pv'] = $connect[0]->idPointVente;
+                        $_SESSION['id_user'] = $connect[0]->idUser;
+                        $_SESSION['idadmin'] = $connect[0]->idadmin;
+                        $_SESSION['let_test'] = true;
+                        $_SESSION['abonne'] = true;
+                        $_SESSION['time_rest'] = '';
+                        $_SESSION['mode'] = $connect[0]->mode;
                     }
+                    redirect('vente') ; 
                 } else {
                     $this->session->set_flashdata('error', 'Mot de passe ou l\'email incorrect. Veuillez réessayer.');
                     redirect('Auth');
