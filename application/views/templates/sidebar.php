@@ -22,7 +22,7 @@
                 <span class="ms-1">Produit</span>
             </a>
 
-            <a href="<?= base_url('appro') ?>" class="sidebar-link <?= (basename($_SERVER['PHP_SELF']) == 'appro') ? 'active' : '' ?>">
+            <!-- <a href="<?= base_url('appro') ?>" class="sidebar-link <?= (basename($_SERVER['PHP_SELF']) == 'appro') ? 'active' : '' ?>">
                 <span class="icon"><i class="fa-solid fa-truck-ramp-box"></i></span>
                 <span class="ms-1">Approvisionnement</span>
             </a>
@@ -30,7 +30,7 @@
             <a href="<?= base_url('stock') ?>" class="sidebar-link <?= (basename($_SERVER['PHP_SELF']) == 'stock') ? 'active' : '' ?>">
                 <span class="icon"><i class="fas fa-warehouse"></i></span>
                 <span class="ms-1">Inventaire</span>
-            </a>
+            </a> -->
             <!-- <a href="<?= base_url('pointDeVente') ?>" class="sidebar-link <?= (basename($_SERVER['PHP_SELF']) == 'pointDeVente') ? 'active' : '' ?>">
                 <span class="icon"><i class="fas fa-store"></i></span>
                 <span class="ms-1">Dépôt</span>
