@@ -67,9 +67,6 @@ tableau_panier = getLocaleStorage('tableau_panier', {});
 const content = append_tableau();
 $('#tableau').html(content);
 
-
-
-
 function vider() {
 	$('#reference').val('');
 	$('#designation').val('');
@@ -82,16 +79,8 @@ function vider() {
 	$('#fiche').val('');
 	$('#couleur').val('');
 	$('#imei1').val('');
-	$('#imei2').val('');
+	$('#numero_liste').val('');
 	$('#montant_show').val(0);
-
-	$('#numero_liste').html('');
-	$('.numero_liste_').addClass('d-none');
-
-
-
-	$('.with_qte').addClass('d-none');
-
 	quantite_dispo_tab = [];
 	real_unite = [];
 }
@@ -121,7 +110,6 @@ $(document).on('change', '#reference', function () {
 			if (recheche_produit.success) {
 				const produit = recheche_produit.produit;
 				type_produit = produit.type;
-				const type_recherche = recheche_produit.type;
 				$.ajax({
 					method: 'post',
 					url: base_url('Vente/recheche_prix'),
@@ -142,85 +130,6 @@ $(document).on('change', '#reference', function () {
 
 						$('#quantite').val(1)
 						$('#montant').val(prix)
-						// traitement 
-						if (type_recherche == 'reference') {
-
-							if (recheche_produit.series) {
-								// des numeros de serie
-
-								if (recheche_produit.series[0]) {
-									const series = recheche_produit.series;
-									console.log(series);
-
-									$('.numero_liste_').removeClass('d-none');
-									let content = ``;
-									for (let i = 0; i < series.length; i++) {
-										const element = series[i];
-										content += `
-										 <option value="${element.numero}" data-couleur ='${element.couleur}' data-imei1 ='${element.imei1}' data-imei2 ='${element.imei2}' >${element.numero}</option>
-										` ;
-									}
-									$('#numero_liste').html(content);
-
-
-									$('#couleur').val(series[0].couleur);
-									$('#imei1').val(series[0].imei1);
-									$('#imei2').val(series[0].imei2);
-								} else {
-									// tout les numero de serie sont vente 
-									Myalert.erreur('Tous les numéros de série de ce produit sont déjà vendus.');
-									vider();
-								}
-
-							}
-							else {
-								// sans numero de serie 
-								$('.numero_liste_').addClass('d-none');
-								// verification du quantite dans le stock 
-								$.ajax({
-									method: 'post',
-									url: base_url('Vente/getStock'),
-									data: { idProduit: produit.idProduit, id_pv: id_pv },
-									dataType: 'json',
-								}).done(function (getStock) {
-									if (getStock.success) {
-										let quantite = getStock.quantite;
-										let in_the_panier = 0;
-										// PRENDRE LES QUANTITE DANS LE PANIER ICI 
-
-
-										if (tableau_panier[produit.refProduit] && tableau_panier[produit.refProduit].length > 0) {
-											in_the_panier = tableau_panier[produit.refProduit][0].quantite;
-										}
-										quantite_dispo = quantite - in_the_panier;
-										$('.with_qte').removeClass('d-none');
-										$('#qte_dipo').val(quantite_dispo);
-										$('#quantite').val(1);
-										$('#montant_show').val(prix.toLocaleString("fr-FR") + ' AR ');
-
-										$('#quantite').focus();
-									} else {
-										Myalert.erreur('Stock insuffisant. Veuillez faire l\'approvisionnement de ce produit dans ce point de vente.');
-										vider();
-									}
-								}).fail(function (err) {
-								})
-							}
-						} else {
-							$('.numero_liste_').removeClass('d-none');
-							let content = `
-									 <option value="${produit.numero}">${produit.numero}</option>
-									` ;
-							$('#numero_liste').html(content);
-
-
-							$('#couleur').val(produit.couleur);
-							$('#imei1').val(produit.imei1);
-							$('#imei2').val(produit.imei2);
-
-
-
-						}
 					} else {
 						Myalert.erreur('Ce produit n\'a pas encore de prix.')
 						vider();
@@ -241,20 +150,6 @@ $(document).on('change', '#reference', function () {
 		// vider
 		vider();
 	}
-})
-
-$(document).on('change', '#numero_liste', function () {
-	// TRAITEMENT SUR LE CHANGEMENT DES NUMERO DE SERIE 	
-	let active_option = $(this).find('option:selected');
-
-	const couleur = $(active_option).data('couleur');
-	const imei1 = $(active_option).data('imei1');
-	const imei2 = $(active_option).data('imei2');
-
-	$('#couleur').val(couleur);
-	$('#imei1').val(imei1);
-	$('#imei2').val(imei2);
-
 })
 
 $(document).on('change', '#unite', function () {
@@ -292,7 +187,7 @@ $(document).on('change', '#pv_vente', function () {
 
 
 
-function addToPanierTab(idProduit, type_produit, quantite, reference, designation, montant, prix, remise, numero, couleur, imei1, imei2) {
+function addToPanierTab(idProduit, type_produit, quantite, reference, designation, montant, prix, remise, numero, couleur, imei1) {
 	// TESTE SI LE PRODUIT EST DEJA DANS LE TABLEAU PANIER 
 	if (tableau_panier[reference] && tableau_panier[reference].length != 0) {
 		// TESTE DU TYPE DE PRODUIT 
@@ -320,7 +215,6 @@ function addToPanierTab(idProduit, type_produit, quantite, reference, designatio
 					numero: numero,
 					couleur: couleur,
 					imei1: imei1,
-					imei2: imei2,
 				}
 				tableau_panier[reference].push(data);
 			}
@@ -344,16 +238,10 @@ function addToPanierTab(idProduit, type_produit, quantite, reference, designatio
 			numero: numero,
 			couleur: couleur,
 			imei1: imei1,
-			imei2: imei2,
 		}
 	}
 	// localstorage 
 	addLocaleStorage('tableau_panier', tableau_panier);
-
-	console.log(tableau_panier);
-
-
-
 
 }
 
@@ -383,7 +271,7 @@ function append_tableau() {
 			if (element.numero) {
 				content += `
 							<td>${element.numero}</td>`;
-				content += `<td>IMEI_1 : ${element.imei1} </br> IMEI_2 : ${element.imei2} </td>
+				content += `<td>${element.imei1}</td>
 							` ;
 			} else {
 				content += `
@@ -447,7 +335,6 @@ $(document.body).on("click", "#valider", function () {
 	const numero = $('#numero_liste').val();
 	const couleur = $('#couleur').val();
 	const imei1 = $('#imei1').val();
-	const imei2 = $('#imei2').val();
 
 	// fixed le pv
 	const pv_active = $("#pv_vente").find('option:selected');
@@ -466,24 +353,22 @@ $(document.body).on("click", "#valider", function () {
 	const qte_dispo = quantite_dispo;
 	if (reference != '' && idProduit != '' && designation != '' && reference != '' && prix != '' && montant != '') {
 		let ok_to_add = true;
-		if (qte_dispo < quantite && type_produit == 'autre') {
+		if (imei1 === '' || numero === '') {
 			ok_to_add = false;
 		}
 		if (ok_to_add) {
 			// ajout dans le tableau_panier
-			addToPanierTab(idProduit, type_produit, quantite, reference, designation, montant, prix, remise, numero, couleur, imei1, imei2);
+			addToPanierTab(idProduit, type_produit, quantite, reference, designation, montant, prix, remise, numero, couleur, imei1);
 			const content = append_tableau();
 			$('#tableau').html(content);
 			vider();
 		}
 		else {
-			// stock insufisant
-			Myalert.erreur(' Le stock est insuffisant.');
+			Myalert.erreur('Les champs imei et numero de serie sont obligatoire !');
 		}
 	}
 	else {
-		console.log(idProduit, type_produit, quantite, reference, designation, montant, prix, remise, numero, couleur, imei1, imei2);
-
+		Myalert.erreur('Verifié toutes les champs');
 	}
 });
 // AJOUT AU PANIER 
@@ -518,22 +403,12 @@ function panier_modal_content(nom_client = '', tel_client = '') {
 			for (let i = 0; i < par_ref.length; i++) {
 				const element = par_ref[i];
 				let numero = element.numero;
-				let imei;
-				if (!numero) {
-					numero = '--';
-					imei = '--';
-				}
-				else {
-					imei = `IMEI_1 : ${element.imei1} </br> IMEI_2 : ${element.imei2}`;
-				}
-
-
 				content += `
 				<tr >
 						<td>${element.reference}</td>
 						<td>${element.designation}</td>
 						<td>${numero}</td>
-						<td>${imei}</td>
+						<td>${element.imei1}</td>
 						<td>${element.quantite}</td>
 						<td>${element.montant.toLocaleString("fr-FR")} Ar</td>
 						<td>${element.remise.toLocaleString("fr-FR")} Ar</td>
@@ -973,10 +848,6 @@ $(document).on('click', '#tva_', function () {
 
 // EVOYER LE PANIER 
 $(document.body).on("click", "#sendvalidation", function () {
-	// Myalert.spinnerB();
-	// $('#loaderFacture').removeClass('d-none');
-	// $('#pdfFrame').addClass('d-none');
-
 	let canRegister = true;
 	// Log détaillé du contenu de formData
 	for (let pair of formData.entries()) {
@@ -1037,8 +908,9 @@ $(document.body).on("click", "#sendvalidation", function () {
 	}).done(function (data) {
 		numFacture = data.facture;
 		idfacture = data.idfacture;
+	}).fail(function (e) {
+		console.log(e);
 	});
-
 
 
 	let data = [];
@@ -1055,7 +927,6 @@ $(document.body).on("click", "#sendvalidation", function () {
 				'couleur': element.couleur,
 				'numero': element.numero,
 				'imei1': element.imei1,
-				'imei2': element.imei2,
 				'min_qte': element.qte_min,
 				'remise': element.remise,
 			}

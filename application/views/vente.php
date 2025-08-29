@@ -81,35 +81,7 @@
                         </div>
                     </div>
 
-                    <!-- alert pour l'abonnement  -->
-                    <div id="<?= (isset($_SESSION['let_test']) && !$_SESSION['let_test']) ? 'movable_notest' : 'movable'  ?>" class=" animate__animated  animate__zoomInDown " style="height: <?= (isset($_SESSION['let_test']) && !$_SESSION['let_test']) ? '100px' : '60px'  ?>;">
-                        <span id="mouvalble_icon">
-                            <i class="fas fa-arrows-alt "></i>
-                        </span>
-                        <?php if (isset($_SESSION['let_test']) && !$_SESSION['let_test']) : ?>
-                            <p class="text-danger m-0"> <i class="fas fa-info-circle "></i> <?= (isset($_SESSION['abonne']) && !$_SESSION['abonne']) ? 'Votre abonnement est terminé. ' : 'Vos 2 semaines d\'essai gratuit sont terminées. : ' ?> Contactez le concepteur du logiciel au <span style="text-decoration: underline;">+261 34 70 840 46</span></p>
-                        <?php elseif (isset($_SESSION['time_rest'])) : ?>
-                            <p class="text-info m-0"> <?= (isset($_SESSION['abonne']) && $_SESSION['abonne']) ? '<i class="fas fa-credit-card"></i> Abonnement : ' : '<i class="fas fa-info-circle  "></i> Essai gratuit : ' ?> <?= ($_SESSION['time_rest'] == 1) ? $_SESSION['time_rest'] . ' jour restant ' : $_SESSION['time_rest'] . ' jours restants' ?> </p>
-                        <?php endif  ?>
-                    </div>
-
                 <?php endif  ?>
-                <?php if (isset($time_alert)) :  ?>
-                    <!-- alert pour l'abonnement  -->
-                    <div id="<?= (isset($_SESSION['let_test']) && !$_SESSION['let_test']) ? 'movable_notest' : 'movable'  ?>" class=" animate__animated  animate__zoomInDown " style="height: <?= (isset($_SESSION['let_test']) && !$_SESSION['let_test']) ? '100px' : '60px'  ?>;">
-                        <span id="mouvalble_icon">
-                            <i class="fas fa-arrows-alt "></i>
-                        </span>
-                        <?php if (isset($_SESSION['let_test']) && !$_SESSION['let_test']) : ?>
-                            <p class="text-danger m-0"> <i class="fas fa-info-circle "></i> <?= (isset($_SESSION['abonne']) && !$_SESSION['abonne']) ? 'Votre abonnement est terminé. ' : 'Vos 2 semaines d\'essai gratuit sont terminées. : ' ?> Contactez le concepteur du logiciel au <span style="text-decoration: underline;">+261 34 70 840 46</span></p>
-                        <?php elseif (isset($_SESSION['time_rest'])) : ?>
-                            <p class="text-info m-0"> <?= (isset($_SESSION['abonne']) && $_SESSION['abonne']) ? '<i class="fas fa-credit-card"></i> Abonnement : ' : '<i class="fas fa-info-circle  "></i> Essai gratuit : ' ?> <?= ($_SESSION['time_rest'] == 1) ? $_SESSION['time_rest'] . ' jour restant ' : $_SESSION['time_rest'] . ' jours restants' ?> </p>
-                        <?php endif  ?>
-                    </div>
-
-                <?php endif  ?>
-
-
                 <!-- Fin Modal -->
                 <!-- Modal -->
                 <div class="modal fade" id="modalfacture">
@@ -249,12 +221,6 @@
                         <input type="text" class="form-control form-control-lg d-none" id="type_produit" name="type_produit">
                     </div>
 
-                    <div class="mb-2 numero_liste_ d-none">
-                        <label class="form-label">Numéro de série : </label>
-                        <select class="form-select " id="numero_liste" name="numero_liste">
-                        </select>
-                    </div>
-
                     <div class="mb-2">
                         <label class="form-label">Désignation : </label>
                         <input type="text" class="form-control form-control-lg" id="designation" name="designation" readonly>
@@ -265,39 +231,32 @@
                         <textarea name="fiche" id="fiche" class="form-control" style="resize: none;" readonly required></textarea>
                     </div>
 
-                    <div class="mb-2 numero_liste_ d-none">
+                    <div class="mb-2">
                         <label class="form-label">IMEI 1 :</label>
-                        <input class="form-control input_form-control " type="text" id="imei1" name="imei1" readonly>
+                        <input class="form-control input_form-control " type="text" id="imei1" name="imei1">
                     </div>
-                    <div class="mb-2 numero_liste_ d-none">
-                        <label class="form-label">IMEI 2 :</label>
-                        <input class="form-control input_form-control " type="text" id="imei2" name="imei2" readonly>
+
+                    <div class="mb-2">
+                        <label class="form-label">Numéro de série : </label>
+                        <input class="form-control input_form-control " type="text" id="numero_liste" name="numero_liste">
                     </div>
+
                     <div class="mb-2">
                         <label class="form-label">Prix :</label>
                         <input class="form-control input_form-control d-none" type="text" id="prix" name="prix_unitaire" readonly>
                         <input class="form-control input_form-control" type="text" id="prix_show" readonly>
                     </div>
 
-
-                    <div class="with_qte d-none">
-                        <div class="mb-2">
-                            <label class="form-label">Quantité disponible :</label>
-                            <input class="form-control input_form-control" type="text" id="qte_dipo" readonly>
-                        </div>
-
-                        <div class="mb-2">
-                            <label class="form-label">Quantité :</label>
-                            <input class="form-control input_form-control" type="number" min='1' id="quantite" name="quantite" value="1" required>
-                        </div>
-
-                        <div class="mb-2">
-                            <label class="form-label">Montant :</label>
-                            <input class="form-control input_form-control" type="text" id="montant_show" name="montant_show" value="0" readonly>
-                            <input class="form-control input_form-control d-none" type="text" id="montant" name="montant" value="1" required>
-                        </div>
+                    <div class="mb-2">
+                        <label class="form-label">Quantité :</label>
+                        <input class="form-control input_form-control" type="number" min='1' id="quantite" name="quantite" value="1" required>
                     </div>
 
+                    <div class="mb-2">
+                        <label class="form-label">Montant :</label>
+                        <input class="form-control input_form-control" type="text" id="montant_show" name="montant_show" value="0" readonly>
+                        <input class="form-control input_form-control d-none" type="text" id="montant" name="montant" value="1" required>
+                    </div>
 
 
 

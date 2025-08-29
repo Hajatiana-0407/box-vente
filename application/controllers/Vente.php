@@ -960,13 +960,6 @@ class Vente extends CI_Controller
             $idProduit = trim(strip_tags($_POST['idProduit']));
         }
         $prix = $this->vente->getPrixUnite($idProduit);
-
-
-
-
-        // verification du quantiter disponnible 
-        // $quantite =  $this->vente->getStock($idProduit, $id_pv);
-
         if (count($prix) > 0) {
             echo json_encode([
                 'success' => true,
