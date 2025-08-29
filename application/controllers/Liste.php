@@ -304,7 +304,7 @@ class Liste extends CI_Controller
 
       if ($panier->numero != '') {
         $affichage .= "<td>" . $panier->numero . "</td>";
-        $affichage .= "<td> IMEI_1 : " . $panier->imei1 . " </br> IMEI_2 : " . $panier->imei2 . " </td>";
+        $affichage .= "<td>" . $panier->imei1 . " </td>";
       } else {
         $affichage .= "<td>--</td>";
         $affichage .= "<td>--</td>";
